@@ -47,7 +47,43 @@ async def ciclo_de_vida(app: FastAPI):
     # (no hay nada que liberar al apagar)
 
 
-app = FastAPI(title="API de supervivencia del Titanic", version="1.0.0", lifespan=ciclo_de_vida)
+DESCRIPCION = """
+API que predice si un pasajero del Titanic habría sobrevivido, usando un modelo XGBoost.
+
+**Autor:** jaquimbayoc7
+**Institución:** Universidad Central
+
+## Diccionario de datos
+
+### Entrada (`POST /predict`)
+
+| Variable | Tipo | Rango / valores | Descripción |
+|---|---|---|---|
+| `Pclass` | entero | 1 a 3 | Clase del pasaje (1 = primera, 3 = tercera) |
+| `Sex` | entero | 0 o 1 | Sexo del pasajero, codificado en 0/1 |
+| `Age` | decimal | 0.42 a 80 | Edad en años |
+| `SibSp` | entero | 0 a 8 | Número de hermanos/cónyuges a bordo |
+| `Parch` | entero | 0 a 6 | Número de padres/hijos a bordo |
+| `Fare_log` | decimal | 0 a 6.24 | Logaritmo de la tarifa pagada |
+| `HasCabin` | entero | 0 o 1 | 1 si tiene cabina registrada, 0 si no |
+| `Embarked` | texto | ver `/docs` | Puerto de embarque |
+
+### Salida
+
+| Campo | Tipo | Descripción |
+|---|---|---|
+| `prediccion` | entero | 1 = sobrevive, 0 = no sobrevive |
+| `etiqueta` | texto | Texto de la predicción |
+| `probabilidad_sobrevivir` | decimal | Probabilidad estimada de sobrevivir (0 a 1) |
+| `version_modelo` | texto | Versión del modelo que respondió |
+"""
+
+app = FastAPI(
+    title="API de supervivencia del Titanic",
+    version="1.0.0",
+    description=DESCRIPCION,
+    lifespan=ciclo_de_vida,
+)
 
 # La llave se envía en el encabezado X-API-Key. auto_error=False: el rechazo lo decidimos nosotros
 # (siempre el mismo 401 genérico) y, además, /docs muestra el botón "Authorize" para probar con llave.

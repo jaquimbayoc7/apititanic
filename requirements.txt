@@ -1,0 +1,14 @@
+# Versiones del modelo (las de model/metadata.json: el .joblib solo es fiable con estas)
+scikit-learn==1.9.1
+pandas==3.1.0
+numpy==2.5.4
+xgboost==3.4.1
+joblib==1.6.0
+
+# Servidor web (versiones probadas en desarrollo)
+fastapi==0.156.2
+uvicorn==0.54.0
+pydantic==2.14.1
+
+# Lectura del archivo .env con uvicorn --env-file
+python-dotenv==1.2.4

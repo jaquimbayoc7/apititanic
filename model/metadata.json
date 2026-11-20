@@ -1,0 +1,115 @@
+{
+  "modelo": {
+    "nombre": "xgboost_titanic_supervivencia",
+    "version": "1.0.0",
+    "algoritmo": "XGBClassifier dentro de sklearn Pipeline",
+    "hiperparametros": {
+      "learning_rate": 0.03,
+      "max_depth": 2,
+      "min_child_weight": 1,
+      "n_estimators": 300,
+      "random_state": 42,
+      "scale_pos_weight": 1.606694560669456,
+      "subsample": 0.8
+    }
+  },
+  "fecha_creacion": "2026-11-19T20:53:00-05:00",
+  "objetivo": "Predecir Survived (1 = sobrevive); umbral de decisión 0.5",
+  "metrica_prueba": {
+    "conjunto": "test",
+    "n_filas": 134,
+    "f1_clase_sobrevive": 0.7115,
+    "roc_auc": 0.7954,
+    "exactitud": 0.7761
+  },
+  "entrenado_con": {
+    "conjunto": "train + validation",
+    "n_filas": 757
+  },
+  "variables_entrada": [
+    {
+      "nombre": "Pclass",
+      "tipo": "entero",
+      "min": 1.0,
+      "max": 3.0,
+      "acepta_nulo": true
+    },
+    {
+      "nombre": "Sex",
+      "tipo": "entero",
+      "min": 0.0,
+      "max": 1.0,
+      "acepta_nulo": true
+    },
+    {
+      "nombre": "Age",
+      "tipo": "decimal",
+      "min": 0.42,
+      "max": 80.0,
+      "acepta_nulo": true
+    },
+    {
+      "nombre": "SibSp",
+      "tipo": "entero",
+      "min": 0.0,
+      "max": 8.0,
+      "acepta_nulo": true
+    },
+    {
+      "nombre": "Parch",
+      "tipo": "entero",
+      "min": 0.0,
+      "max": 6.0,
+      "acepta_nulo": true
+    },
+    {
+      "nombre": "Fare_log",
+      "tipo": "decimal",
+      "min": 0.0,
+      "max": 6.240917354759096,
+      "acepta_nulo": true
+    },
+    {
+      "nombre": "HasCabin",
+      "tipo": "entero",
+      "min": 0.0,
+      "max": 1.0,
+      "acepta_nulo": true
+    },
+    {
+      "nombre": "Embarked",
+      "tipo": "categorica",
+      "categorias_validas": [
+        "C",
+        "Q",
+        "S"
+      ],
+      "acepta_nulo": true
+    }
+  ],
+  "orden_columnas": [
+    "Pclass",
+    "Sex",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Fare_log",
+    "HasCabin",
+    "Embarked"
+  ],
+  "notas_entrada": [
+    "Sex: 1 = mujer, 0 = hombre",
+    "HasCabin: 1 = tiene cabina, 0 = no",
+    "Fare_log = log1p(Fare): el modelo espera esta columna ya calculada, no Fare",
+    "Embarked con un valor fuera de las categorías válidas se ignora (handle_unknown='ignore')",
+    "Los rangos min/max son los vistos al entrenar; fuera de ellos las predicciones son menos fiables"
+  ],
+  "versiones": {
+    "python": "3.14.8",
+    "scikit-learn": "1.9.1",
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "xgboost": "3.4.1",
+    "joblib": "1.6.0"
+  }
+}

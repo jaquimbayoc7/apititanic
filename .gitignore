@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Entornos virtuales y secretos
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor / sistema
+.vscode/
+.DS_Store
+
+# OJO: model/model.joblib y model/metadata.json SÍ se versionan (Render los necesita para arrancar)
